@@ -447,7 +447,7 @@
                         </div>
                     </div>
                     
-                    <h4 style="margin: 15px 0; color: #667eea;">Bewohner & Zeiträume:</h4>
+                    <h4 style="margin: 15px 0; color: #667eea;">Bewohner & Zeiträume & Bezahlte Miete:</h4>
                     <div id="tenants-${index}"></div>
                     <button class="btn btn-primary" style="margin-top: 10px;" onclick="addTenant(${index})">+ Bewohner hinzufügen</button>
                 `;
@@ -517,6 +517,7 @@
             
             document.getElementById('internetPersons').textContent = numPersons;
             document.getElementById('gezPersons').textContent = numPersons;
+            document.getElementById('totalPersons').textContent = numPersons;
             document.getElementById('internetPerPerson').textContent = internetPerPerson.toFixed(2);
             document.getElementById('gezPerPerson').textContent = gezPerPerson.toFixed(2);
             document.getElementById('totalMonthly').textContent = totalMonthly.toFixed(2);
