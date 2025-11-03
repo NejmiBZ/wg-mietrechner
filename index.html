@@ -292,72 +292,58 @@
                 </div>
             </div>
             
-            <!-- Internet & GEZ Section -->
+            <!-- Internet & GEZ Section OBEN -->
             <div class="section internet-section">
                 <h2>📡 WLAN & GEZ (Separate Abrechnung)</h2>
                 <div class="info-box">
                     <p><strong>ℹ️ Hinweis:</strong> Diese Kosten sind NICHT in der Miete enthalten und werden separat abgerechnet.</p>
-                    <p>WLAN: 34,99€/Monat | GEZ: 55,08€/3 Monate (18,36€/Monat)</p>
+                    <p>WLAN: 34,99€/Monat | GEZ: 55,08€ pro 3 Monate (18,36€/Monat)</p>
                 </div>
                 
-                <div class="summary-cards">
-                    <div class="summary-card internet-card">
-                        <h3>Internet DSL (monatlich)</h3>
-                        <div class="amount">34,99 €</div>
-                    </div>
-                    <div class="summary-card internet-card">
-                        <h3>GEZ (vierteljährlich)</h3>
-                        <div class="amount">55,08 €</div>
-                        <p style="margin-top: 10px; color: #666;">18,36 € / Monat</p>
-                    </div>
-                    <div class="summary-card internet-card">
-                        <h3>Summe monatlich</h3>
-                        <div class="amount">53,36 €</div>
-                    </div>
-                    <div class="summary-card internet-card">
-                        <h3>Anteil pro Person (÷4)</h3>
-                        <div class="amount">13,34 €</div>
-                    </div>
+                <div class="input-group" style="max-width: 300px; margin: 20px auto;">
+                    <label style="color: #ff9800; font-weight: bold;">Anzahl Personen:</label>
+                    <input type="number" id="numPersonsInternet" value="4" min="1" onchange="updateInternetGezTable()" style="border-color: #ff9800;">
                 </div>
                 
-                <h3 style="margin-top: 30px; color: #ff9800;">WLAN & GEZ - Kostenverteilung:</h3>
-                <table class="results-table internet-table">
-                    <thead>
-                        <tr>
-                            <th>Kostenart</th>
-                            <th>Zeitraum</th>
-                            <th>Gesamtbetrag (€)</th>
-                            <th>Monatlicher Anteil (€)</th>
-                            <th>Anteil pro Person (€)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Internet DSL</strong></td>
-                            <td>monatlich</td>
-                            <td>35,00</td>
-                            <td>35,00</td>
-                            <td class="highlight-orange">8,75</td>
-                        </tr>
-                        <tr>
-                            <td><strong>GEZ (Rundfunkbeitrag)</strong></td>
-                            <td>vierteljährlich</td>
-                            <td>55,08</td>
-                            <td>18,36</td>
-                            <td class="highlight-orange">4,59</td>
-                        </tr>
-                        <tr style="background: #fff3e0; font-weight: bold;">
-                            <td><strong>Summe</strong></td>
-                            <td>—</td>
-                            <td>—</td>
-                            <td><strong>53,36</strong></td>
-                            <td class="highlight-orange"><strong>13,34</strong></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div style="max-width: 700px; margin: 20px auto;">
+                    <table class="results-table internet-table" style="font-size: 0.9em;">
+                        <thead>
+                            <tr>
+                                <th>Kostenart</th>
+                                <th>Zeitraum</th>
+                                <th>Monatlich (€)</th>
+                                <th>Anzahl Personen</th>
+                                <th>Pro Person (€)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Internet DSL</strong></td>
+                                <td>monatlich</td>
+                                <td>34,99</td>
+                                <td id="internetPersons">4</td>
+                                <td class="highlight-orange" id="internetPerPerson">8,75</td>
+                            </tr>
+                            <tr>
+                                <td><strong>GEZ</strong></td>
+                                <td>pro 3 Monate</td>
+                                <td>18,36</td>
+                                <td id="gezPersons">4</td>
+                                <td class="highlight-orange" id="gezPerPerson">4,59</td>
+                            </tr>
+                            <tr style="background: #fff3e0; font-weight: bold;">
+                                <td><strong>Summe</strong></td>
+                                <td>—</td>
+                                <td><strong id="totalMonthly">53,35</strong></td>
+                                <td id="totalPersons">4</td>
+                                <td class="highlight-orange"><strong id="totalPerPerson">13,34</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 
-                <div class="info-box" style="margin-top: 20px; background: #fff3e0; border-left-color: #ff9800;">
-                    <p><strong>💡 Hinweis zur Zahlung:</strong> Jeder Bewohner zahlt monatlich 13,34 € separat für WLAN & GEZ.</p>
+                <div class="info-box" style="background: #fff3e0; border-left-color: #ff9800;">
+                    <p><strong>💡 Hinweis zur Zahlung:</strong> Jeder Bewohner zahlt monatlich <span id="paymentAmount" style="font-weight: bold; color: #ff9800;">13,34 €</span> separat für WLAN & GEZ.</p>
                 </div>
             </div>
             
@@ -417,24 +403,6 @@
                         </tr>
                     </thead>
                     <tbody id="paybackBody"></tbody>
-                </table>
-                
-                <!-- Separate Internet & GEZ Abrechnung pro Person -->
-                <h3 style="margin-top: 40px; color: #ff9800;">📡 WLAN & GEZ - Abrechnung pro Person:</h3>
-                <div class="info-box" style="background: #fff3e0; border-left-color: #ff9800;">
-                    <p><strong>Wichtig:</strong> Diese Abrechnung ist SEPARAT von der Miete und wird direkt an Nejmi gezahlt.</p>
-                </div>
-                <table class="results-table internet-table" id="internetGezPersonTable">
-                    <thead>
-                        <tr>
-                            <th>Person</th>
-                            <th>Zeitraum</th>
-                            <th>Monate</th>
-                            <th>Betrag/Monat</th>
-                            <th>Gesamt zu zahlen an Nejmi</th>
-                        </tr>
-                    </thead>
-                    <tbody id="internetGezPersonBody"></tbody>
                 </table>
             </div>
         </div>
@@ -536,6 +504,25 @@
             const [toYear, toMonth] = to.split('-').map(Number);
             return (toYear - fromYear) * 12 + (toMonth - fromMonth) + 1;
         }
+        
+        function updateInternetGezTable() {
+            const numPersons = parseInt(document.getElementById('numPersonsInternet').value) || 1;
+            const internetCost = 34.99;
+            const gezMonthly = 18.36;
+            const totalMonthly = internetCost + gezMonthly;
+            
+            const internetPerPerson = internetCost / numPersons;
+            const gezPerPerson = gezMonthly / numPersons;
+            const totalPerPerson = totalMonthly / numPersons;
+            
+            document.getElementById('internetPersons').textContent = numPersons;
+            document.getElementById('gezPersons').textContent = numPersons;
+            document.getElementById('internetPerPerson').textContent = internetPerPerson.toFixed(2);
+            document.getElementById('gezPerPerson').textContent = gezPerPerson.toFixed(2);
+            document.getElementById('totalMonthly').textContent = totalMonthly.toFixed(2);
+            document.getElementById('totalPerPerson').textContent = totalPerPerson.toFixed(2);
+            document.getElementById('paymentAmount').textContent = totalPerPerson.toFixed(2) + ' €';
+        }
 
         function calculate() {
             const totalRent = parseFloat(document.getElementById('totalRent').value);
@@ -592,13 +579,6 @@
             const paybackBody = document.getElementById('paybackBody');
             paybackBody.innerHTML = '';
             
-            // Internet & GEZ pro Person
-            const internetGezPerMonth = 13.34;
-            const internetGezPersonBody = document.getElementById('internetGezPersonBody');
-            internetGezPersonBody.innerHTML = '';
-            
-            const allTenants = new Map();
-            
             roomsWithShares.forEach(room => {
                 room.tenants.forEach(tenant => {
                     const months = getMonthsDifference(tenant.from, tenant.to);
@@ -619,34 +599,7 @@
                         <td class="${diffClass}">${difference > 0 ? '+' : ''}${difference.toFixed(2)} €</td>
                         <td class="${diffClass}"><strong>${totalDifference > 0 ? '+' : ''}${totalDifference.toFixed(2)} €</strong></td>
                     `;
-                    
-                    // Sammle für Internet & GEZ (außer Nejmi)
-                    if (tenant.name !== 'Nejmi') {
-                        if (!allTenants.has(tenant.name)) {
-                            allTenants.set(tenant.name, {
-                                from: tenant.from,
-                                to: tenant.to,
-                                months: months
-                            });
-                        } else {
-                            const existing = allTenants.get(tenant.name);
-                            existing.months += months;
-                        }
-                    }
                 });
-            });
-            
-            // Internet & GEZ Tabelle befüllen
-            allTenants.forEach((data, name) => {
-                const totalInternetGez = internetGezPerMonth * data.months;
-                const row = internetGezPersonBody.insertRow();
-                row.innerHTML = `
-                    <td><strong>${name}</strong></td>
-                    <td>${data.from} bis ${data.to}</td>
-                    <td>${data.months}</td>
-                    <td>13,34 €</td>
-                    <td class="highlight-orange"><strong>${totalInternetGez.toFixed(2)} €</strong></td>
-                `;
             });
             
             document.getElementById('resultsSection').style.display = 'block';
@@ -655,6 +608,7 @@
 
         // Initialisierung
         renderRooms();
+        updateInternetGezTable();
     </script>
 </body>
 </html>
